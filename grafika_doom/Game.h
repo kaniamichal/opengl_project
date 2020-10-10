@@ -48,6 +48,7 @@ private:
 	std::vector<glm::vec3*> lights;
 
 //private functions
+	
 	void initGLFW();
 	void initWindow(const char* title, bool resizable);
 	void initGlew();
@@ -64,7 +65,8 @@ private:
 
 
 public:
-	Game(const char* title, const int width, const int height, int GLmajoGL_VERSION_MAJOR, int GL_VERSION_MINOR, bool resizable);
+	Game(const char* title, const int width, const int height, int GL_VERSION_MAJOR, int GL_VERSION_MINOR, bool resizable);
+	
 	virtual ~Game();
 
 //accesors
@@ -78,6 +80,6 @@ public:
 	void render();
 //static functions
 	static void framebuffer_resize_callback(GLFWwindow* window, int fbW, int fbH);
-
+	static void ErrorCallback(GLint error, const char* err_str);
 };
 

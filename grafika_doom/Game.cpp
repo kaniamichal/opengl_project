@@ -21,6 +21,7 @@ void Game::initGLFW()
 
 void Game::initWindow(const char* title, bool resizable)
 {
+
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, this->GL_VERSION_MAJOR);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, this->GL_VERSION_MINOR);
@@ -30,10 +31,11 @@ void Game::initWindow(const char* title, bool resizable)
 
 	if (this->window == nullptr)
 	{
-		std::cout << "ERROR: Create winodw : GLFW init window failed" << "\n";
+		std::cout << "ERROR: game.cpp: Create winodw function : GLFW initWindow failed" << "\n";
 		glfwTerminate();
 	}
 
+	
 	glfwGetFramebufferSize(this->window, &this->framebufferWidth, &this->framebufferHeight);
 	glfwSetFramebufferSizeCallback(this->window, Game::framebuffer_resize_callback);
 	//glViewport(0, 0, framebufferWIdth, framebufferHeight);
@@ -44,17 +46,24 @@ void Game::initWindow(const char* title, bool resizable)
 void Game::initGlew()
 {
 	//init GLEW (need window and opengl context)
-	glewInit();
 	glewExperimental = GL_TRUE;
-	
+    glewInit();
 
 	//error
-	if (!glewInit())
+	if (glewInit() != GLEW_OK)
 	{
 		std::cout << "ERROR::GAME.CPP::GLEW INIT FAILED" << "\n";
 		glfwTerminate();
 	}
 	
+	GLenum err = glewInit();
+	if (GLEW_OK != err)
+	{
+		/* Problem: glewInit failed, something is seriously wrong. */
+		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+	
+	}
+	fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 }
 
 void Game::initOpenglOptions()
@@ -127,7 +136,7 @@ void Game::initUniforms()
 }
 
 //constuctors
-Game::Game(const char* title, const int WINDOW_WIDTH, const int WINDOW_HEIGHT, int GLmajoGL_VERSION_MAJOR, int GL_VERSION_MINOR, bool resizable)
+Game::Game(const char* title, const int WINDOW_WIDTH, const int WINDOW_HEIGHT, int GL_VERSION_MAJOR, int GL_VERSION_MINOR, bool resizable)
 	:WINDOW_WIDTH(WINDOW_WIDTH), WINDOW_HEIGHT(WINDOW_HEIGHT), GL_VERSION_MAJOR(GL_VERSION_MAJOR), GL_VERSION_MINOR(GL_VERSION_MINOR)
 {
 	//init variables
@@ -143,11 +152,13 @@ Game::Game(const char* title, const int WINDOW_WIDTH, const int WINDOW_HEIGHT, i
 	this->nearPlane = 0.1f;
 	this->farPlane = 1000.0f;
 
+	//glfwSetErrorCallback(ErrorCallback);
+
 	this->initGLFW();
 	this->initWindow(title, resizable);
 	this->initGlew();
 	this->initOpenglOptions();
-
+	
 	this->initMatrices();
 	this->initShaders();
 	this->initTextures();
@@ -243,5 +254,12 @@ void Game::render()
 void Game::framebuffer_resize_callback(GLFWwindow* window, int fbW, int fbH)
 {
 	glViewport(0, 0, fbW, fbH);
+}
+
+void Game::ErrorCallback(GLint error, const char* err_str)
+{
+	fputs(err_str, stderr); "\n"; "\n";
+	std::cout << "ERROR:: ErrorCallback:: GLFW Error: " << err_str << std::endl;
+	
 }
 
