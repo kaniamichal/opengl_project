@@ -140,7 +140,7 @@ void Game::initModels()
 		meshes.push_back(new Mesh(&Right(), glm::vec3(40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(4.0f))); //prawa widoczna tylko z prawe
 		for (float j = 0.0f; j >= -100; j--)
 		{
-			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(10.0f))); //pod³oga
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //pod³oga
 		}
 	}
 
@@ -150,7 +150,7 @@ void Game::initModels()
 		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa po lewej stronie kamery z ty³u widoczna od œrodka 
 		for (float j = 0.0f; j >= -100; j--)
 		{
-			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(10.0f))); //pod³oga
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //pod³oga
 		}
 	}
 	
