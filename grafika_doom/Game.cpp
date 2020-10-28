@@ -102,7 +102,7 @@ void Game::initShaders()
 void Game::initTextures()
 {
 	//texture0
-	this->textures.push_back(new Texture("Images/rocks2.png", GL_TEXTURE_2D));
+	this->textures.push_back(new Texture("Images/grass.png", GL_TEXTURE_2D));
 	this->textures.push_back(new Texture("Images/rocks2_specular.png", GL_TEXTURE_2D));
 	//texture1
 	this->textures.push_back(new Texture("Images/rock.png", GL_TEXTURE_2D));
@@ -128,18 +128,19 @@ void Game::initModels()
 	std::vector<Mesh*>meshes2;
 
 	
-	//meshes.push_back(new Mesh(&Cubus(), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+	//meshes.push_back(new Mesh(&Cubus(), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f)));
 
+
+	
 	for (float i = 0.0f; i <= 40; i++)
 	{
 		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa
 		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa z ty³u widoczna od œrodka 
 		meshes.push_back(new Mesh(&Left(), glm::vec3(-40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //lewa widoczna od œrodka
-		meshes.push_back(new Mesh(&Right(), glm::vec3(40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //prawa widoczna tylko z prawe
-		meshes.push_back(new Mesh(&Right(), glm::vec3(40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f, 180.0f, 0.0f), glm::vec3(4.0f))); //prawa
+		meshes.push_back(new Mesh(&Right(), glm::vec3(40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(4.0f))); //prawa widoczna tylko z prawe
 		for (float j = 0.0f; j >= -100; j--)
 		{
-			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //pod³oga
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(10.0f))); //pod³oga
 		}
 	}
 
@@ -149,10 +150,10 @@ void Game::initModels()
 		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa po lewej stronie kamery z ty³u widoczna od œrodka 
 		for (float j = 0.0f; j >= -100; j--)
 		{
-			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //pod³oga
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(10.0f))); //pod³oga
 		}
 	}
-
+	
 
 	/*meshes.push_back(new Mesh(&Cubus(), glm::vec3(4.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
 	meshes.push_back(new Mesh(&Cubus(), glm::vec3(6.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
@@ -174,7 +175,7 @@ void Game::initModels()
 	
 	//this->models.push_back(new Model(glm::vec3(1.0f, 1.0f, 0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes));
 	
-	this->models.push_back(new Model(glm::vec3(0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes2));
+	this->models.push_back(new Model(glm::vec3(0.0f), this->materials[0], this->textures[TEXTURE0], this->textures[TEXTURE0_SPECULAR], meshes2));
 	
 	//this->models.push_back(new Model(glm::vec3(14.0f, 0.0f, 4.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], "obj/mac10.obj"));
 
