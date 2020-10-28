@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	Game game("Opengl - zaliczenie ;)", 1024, 1024, 4, 4, true);
+	Game game("Opengl - zaliczenie ;)", 1024, 900, 4, 4, true);
 
 	//main loop
 	while (!game.getWindowShouldClose())

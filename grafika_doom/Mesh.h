@@ -9,7 +9,6 @@
 #include"Texture.h"
 #include"Material.h" 
 
-
 class Mesh
 {
 private:
@@ -43,7 +42,7 @@ private:
 		glBufferData(GL_ARRAY_BUFFER, this->nrOfVertices * sizeof(Vertex), this->vertexArray, GL_STATIC_DRAW);
 
 		//generate EBO and bind and send data
-		if (nrOfIndices > 0)
+		if (this->nrOfIndices > 0)
 		{
 			glGenBuffers(1, &this->EBO);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
@@ -58,7 +57,7 @@ private:
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, color));
 		glEnableVertexAttribArray(1);
 		//texcord
-		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcord));
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcord));
 		glEnableVertexAttribArray(2);
 		//normal
 		glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
