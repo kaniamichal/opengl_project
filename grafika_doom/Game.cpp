@@ -135,7 +135,8 @@ void Game::initModels()
 	for (float i = 0.0f; i <= 40; i++)
 	{
 		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa
-		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa z ty³u widoczna od œrodka 
+		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.f), glm::vec3(4.0f))); //œciana frontowa z ty³u widoczna od œrodka 
+		meshes.push_back(new Mesh(&Front(), glm::vec3(-2.5*i, 0.0f, -40.f), glm::vec3(0.0f), glm::vec3(0.0f, -90.f, 0.f), glm::vec3(4.0f))); //œciana frontowa obrócona jako prawa, by by³a widoczna od œrodka œrodka 
 		meshes.push_back(new Mesh(&Left(), glm::vec3(-40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //lewa widoczna od œrodka
 		meshes.push_back(new Mesh(&Right(), glm::vec3(40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(4.0f))); //prawa widoczna tylko z prawe
 		for (float j = 0.0f; j >= -100; j--)
