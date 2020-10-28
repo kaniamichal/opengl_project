@@ -128,19 +128,54 @@ void Game::initModels()
 	std::vector<Mesh*>meshes2;
 
 	
-	meshes.push_back(new Mesh(&Pyramid(), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f)));
-	meshes.push_back(new Mesh(&Triangle(), glm::vec3(2.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f)));
-	meshes2.push_back(new Mesh(&Triangle(), glm::vec3(2.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(-90.0f, 0.0f, 0.0f), glm::vec3(100.0f)));
+	//meshes.push_back(new Mesh(&Cubus(), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+
+	for (float i = 0.0f; i <= 40; i++)
+	{
+		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa
+		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa z ty³u widoczna od œrodka 
+		meshes.push_back(new Mesh(&Left(), glm::vec3(-40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //lewa widoczna od œrodka
+		meshes.push_back(new Mesh(&Right(), glm::vec3(40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //prawa widoczna tylko z prawe
+		meshes.push_back(new Mesh(&Right(), glm::vec3(40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f, 180.0f, 0.0f), glm::vec3(4.0f))); //prawa
+		for (float j = 0.0f; j >= -100; j--)
+		{
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //pod³oga
+		}
+	}
+
+	for (float i = 0.0f; i >=-40; i--)
+	{
+		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f)));
+		for (float j = 0.0f; j >= -100; j--)
+		{
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //pod³oga
+		}
+	}
+
+
+	/*meshes.push_back(new Mesh(&Cubus(), glm::vec3(4.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+	meshes.push_back(new Mesh(&Cubus(), glm::vec3(6.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
+	meshes.push_back(new Mesh(&Cubus(), glm::vec3(8.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
+	meshes.push_back(new Mesh(&Cubus(), glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
+	meshes.push_back(new Mesh(&Cubus(), glm::vec3(-4.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
+	meshes.push_back(new Mesh(&Cubus(), glm::vec3(-6.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
+	meshes.push_back(new Mesh(&Cubus(), glm::vec3(-8.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
+	meshes.push_back(new Mesh(&Cubus(), glm::vec3(-10.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));*/
+	//meshes.push_back(new Mesh(&Triangle(), glm::vec3(2.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f)));
+	//meshes2.push_back(new Mesh(&Triangle(), glm::vec3(2.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(-90.0f, 0.0f, 0.0f), glm::vec3(300.0f)));
+	/*meshes2.push_back(new Mesh(&Triangle(), glm::vec3(20.0f, 20.0f, 0.0f), glm::vec3(0.0f), glm::vec3(90.0f, 90.0f, 0.0f), glm::vec3(50.0f)));
+	meshes2.push_back(new Mesh(&Triangle(), glm::vec3(90.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, -90.0f, 0.0f), glm::vec3(60.0f)));
+	meshes2.push_back(new Mesh(&Triangle(), glm::vec3(-90.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 90.0f, 0.0f), glm::vec3(60.0f)));*/
 
 	this->models.push_back(new Model(glm::vec3(0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes));
 	
-	this->models.push_back(new Model(glm::vec3(0.0f, 1.f, 0.0f), this->materials[0], this->textures[TEXTURE0], this->textures[TEXTURE0_SPECULAR], meshes));
+	//this->models.push_back(new Model(glm::vec3(0.0f, 1.f, 0.0f), this->materials[0], this->textures[TEXTURE0], this->textures[TEXTURE0_SPECULAR], meshes));
 	
-	this->models.push_back(new Model(glm::vec3(1.0f, 1.0f, 0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes));
+	//this->models.push_back(new Model(glm::vec3(1.0f, 1.0f, 0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes));
 	
-	this->models.push_back(new Model(glm::vec3(1.0f, -3.0f, 0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes2));
+	this->models.push_back(new Model(glm::vec3(0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes2));
 	
-	this->models.push_back(new Model(glm::vec3(14.0f, 0.0f, 4.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], "obj/mac10.obj"));
+	//this->models.push_back(new Model(glm::vec3(14.0f, 0.0f, 4.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], "obj/mac10.obj"));
 
 	for (auto*& i : meshes)
 		delete i; 
@@ -338,11 +373,11 @@ void Game::keyboard()
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_C) == GLFW_PRESS)
 	{
-		this->cameraPosition.y -= 0.05f;
+		this->cameraPosition.y -= 0.5f;
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	{
-		this->cameraPosition.y += 0.05f;
+		this->cameraPosition.y += 0.5f;
 	}
 }
 
