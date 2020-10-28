@@ -336,14 +336,14 @@ void Game::keyboard()
 	{
 		this->camera.move(deltaTime, RIGHT);
 	}
-	if (glfwGetKey(this->window, GLFW_KEY_C) == GLFW_PRESS)
+/*	if (glfwGetKey(this->window, GLFW_KEY_C) == GLFW_PRESS)
 	{
 		this->cameraPosition.y -= 0.05f;
 	}
 	if (glfwGetKey(this->window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	{
 		this->cameraPosition.y += 0.05f;
-	}
+	}*/
 }
 
 void Game::updateInput()
