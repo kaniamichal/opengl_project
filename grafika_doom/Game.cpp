@@ -145,7 +145,8 @@ void Game::initModels()
 
 	for (float i = 0.0f; i >=-40; i--)
 	{
-		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f)));
+		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa po lewej stronie kamery
+		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa po lewej stronie kamery z ty³u widoczna od œrodka 
 		for (float j = 0.0f; j >= -100; j--)
 		{
 			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //pod³oga
