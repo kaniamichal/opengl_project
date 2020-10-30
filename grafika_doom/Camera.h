@@ -12,7 +12,7 @@
 #include<mat4x4.hpp>
 #include<gtc\matrix_transform.hpp>
 
-enum direction {FORWARD = 0, BACKWARD, LEFT, RIGHT};
+enum direction {FORWARD = 0, BACKWARD, LEFT, RIGHT, UP, DOWN};
 
 class Camera
 {
@@ -50,7 +50,7 @@ public:
 	{
 		this->ViewMatrix = glm::mat4(1.0f);
 		this->movementSpeed = 4.0f;
-		this->sensitivity = 7.0f;
+		this->sensitivity = 3.0f;
 
 		this->worldUp = worldUp;
 		this->position = position;
@@ -90,19 +90,27 @@ public:
 		switch (direction)
 		{
 		case FORWARD:
-			this->position += this->front * this->movementSpeed * deltaTime;
+			this->position += this->front * this->movementSpeed * 2.0f * deltaTime;
 			break;
 
 		case BACKWARD:
-			this->position -= this->front * this->movementSpeed * deltaTime;
+			this->position -= this->front * this->movementSpeed * 2.0f * deltaTime;
 			break;
 		
 		case LEFT:
-			this->position -= this->right * this->movementSpeed * deltaTime;
+			this->position -= this->right * this->movementSpeed * 2.0f * deltaTime;
 			break;
 		
 		case RIGHT:
-			this->position += this->right * this->movementSpeed * deltaTime;
+			this->position += this->right * this->movementSpeed * 2.0f * deltaTime;
+			break;
+
+		case UP:
+			this->position += this->worldUp * this->movementSpeed * deltaTime;
+			break;
+
+		case DOWN:
+			this->position -= this->worldUp * this->movementSpeed * deltaTime;
 			break;
 		
 		default:

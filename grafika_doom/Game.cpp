@@ -103,10 +103,10 @@ void Game::initTextures()
 {
 	//texture0
 	this->textures.push_back(new Texture("Images/grass.png", GL_TEXTURE_2D));
-	this->textures.push_back(new Texture("Images/rocks2_specular.png", GL_TEXTURE_2D));
+	this->textures.push_back(new Texture("Images/grass_specular.png", GL_TEXTURE_2D));
 	//texture1
-	this->textures.push_back(new Texture("Images/cobblestone.png", GL_TEXTURE_2D));
-	this->textures.push_back(new Texture("Images/rock_specular.png", GL_TEXTURE_2D));
+	this->textures.push_back(new Texture("Images/skaly.png", GL_TEXTURE_2D));
+	this->textures.push_back(new Texture("Images/skaly_specular.png", GL_TEXTURE_2D));
 
 }
 
@@ -241,13 +241,9 @@ void Game::initModels()
 		
 	this->models.push_back(new Model(glm::vec3(0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes));
 	
-	//this->models.push_back(new Model(glm::vec3(0.0f, 1.f, 0.0f), this->materials[0], this->textures[TEXTURE0], this->textures[TEXTURE0_SPECULAR], meshes));
-	
-	//this->models.push_back(new Model(glm::vec3(1.0f, 1.0f, 0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes));
-	
 	this->models.push_back(new Model(glm::vec3(0.0f), this->materials[0], this->textures[TEXTURE0], this->textures[TEXTURE0_SPECULAR], meshes2));
 	
-	//this->models.push_back(new Model(glm::vec3(14.0f, 0.0f, 4.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], "obj/mac10.obj"));
+	//this->models.push_back(new Model(glm::vec3(0.0f, 5.0f, 4.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], "obj/Tree.obj"));
 
 	for (auto*& i : meshes)
 		delete i; 
@@ -259,6 +255,7 @@ void Game::initModels()
 void Game::initPointLights()
 {
 	this->pointLights.push_back(new PointLight(glm::vec3(0.0f, 0.0f, 0.0f)));
+
 
 }
 
@@ -303,7 +300,7 @@ void Game::updateUniforms()
 //constuctors
 Game::Game(const char* title, const int WINDOW_WIDTH, const int WINDOW_HEIGHT, int GL_VERSION_MAJOR, int GL_VERSION_MINOR, bool resizable)
 	:WINDOW_WIDTH(WINDOW_WIDTH), WINDOW_HEIGHT(WINDOW_HEIGHT), GL_VERSION_MAJOR(GL_VERSION_MAJOR), GL_VERSION_MINOR(GL_VERSION_MINOR),
-	camera(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 1.0f, 0.0f))
+	camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.75f, 0.0f))
 {
 	//init variables
 	this->window = nullptr;
@@ -384,10 +381,6 @@ void Game::setWindowShouldClose()
 }
 
 
-
-
-
-
 //functions
 
 void Game::updateDeltaTime()
@@ -443,14 +436,14 @@ void Game::keyboard()
 	{
 		this->camera.move(deltaTime, RIGHT);
 	}
-/*	if (glfwGetKey(this->window, GLFW_KEY_C) == GLFW_PRESS)
-	{
-		this->cameraPosition.y -= 0.5f;
-	}
 	if (glfwGetKey(this->window, GLFW_KEY_SPACE) == GLFW_PRESS)
 	{
-		this->cameraPosition.y += 0.05f;
-	}*/
+		this->camera.move(deltaTime, UP);
+	}
+	if (glfwGetKey(this->window, GLFW_KEY_C) == GLFW_PRESS)
+	{
+		this->camera.move(deltaTime, DOWN);
+	}
 }
 
 void Game::updateInput()
