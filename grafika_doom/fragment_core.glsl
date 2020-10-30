@@ -61,7 +61,7 @@ vec3 calculateSpecular(Material material, vec3 vs_position, vec3 vs_normal, vec3
 void main()
 {
 	//fs_color = vec4(vs_color, 1.f);
-	//fs_color = texture(texture0, vs_texcord);// + texture(texture1, vs_texcord); //* vec4(vs_color, 1.f);
+	//fs_color = texture(texture0, vs_texcord)// + texture(texture1, vs_texcord); //* vec4(vs_color, 1.f);
 
 	//ambient light
 	vec3 ambientFinal = calculateAmbient(material);

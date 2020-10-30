@@ -49,8 +49,8 @@ public:
 	Camera(glm::vec3 position, glm::vec3 direction, glm::vec3 worldUp)
 	{
 		this->ViewMatrix = glm::mat4(1.0f);
-		this->movementSpeed = 3.0f;
-		this->sensitivity = 5.0f;
+		this->movementSpeed = 4.0f;
+		this->sensitivity = 7.0f;
 
 		this->worldUp = worldUp;
 		this->position = position;

@@ -105,7 +105,7 @@ void Game::initTextures()
 	this->textures.push_back(new Texture("Images/grass.png", GL_TEXTURE_2D));
 	this->textures.push_back(new Texture("Images/rocks2_specular.png", GL_TEXTURE_2D));
 	//texture1
-	this->textures.push_back(new Texture("Images/rock.png", GL_TEXTURE_2D));
+	this->textures.push_back(new Texture("Images/cobblestone.png", GL_TEXTURE_2D));
 	this->textures.push_back(new Texture("Images/rock_specular.png", GL_TEXTURE_2D));
 
 }
@@ -127,49 +127,118 @@ void Game::initModels()
 	std::vector<Mesh*>meshes;
 	std::vector<Mesh*>meshes2;
 
-	
-	//meshes.push_back(new Mesh(&Cubus(), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f)));
-
-
-	
-	for (float i = 0.0f; i <= 40; i++)
+	for (float i = 0.0f; i <= 50; i++)
 	{
-		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa
-		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.f), glm::vec3(4.0f))); //œciana frontowa z ty³u widoczna od œrodka 
-		meshes.push_back(new Mesh(&Front(), glm::vec3(-2.5*i, 0.0f, -40.f), glm::vec3(0.0f), glm::vec3(0.0f, -90.f, 0.f), glm::vec3(4.0f))); //œciana frontowa obrócona jako prawa, by by³a widoczna od œrodka œrodka 
-		meshes.push_back(new Mesh(&Left(), glm::vec3(-40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //lewa widoczna od œrodka
-		meshes.push_back(new Mesh(&Right(), glm::vec3(40, 0.0f, -2.5*i), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(4.0f))); //prawa widoczna tylko z prawe
-		for (float j = 0.0f; j >= -100; j--)
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f))); //przednia œciana
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(1.8*i +10, 0.0f, -50.0f), glm::vec3(0.0f), glm::vec3(0.0f, 90.0f, 0.0f), glm::vec3(2.0f))); //lewa œciana
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.f), glm::vec3(2.0f))); //œciana tylna
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((4.0f+(1.75* i)), 0.0f, 52.0f), glm::vec3(0.0f), glm::vec3(0.0f, 90.0f, 0.0f), glm::vec3(2.0f))); //prawa œciana
+		
+		for (float j = 40.0f; j >= -120; j--)
 		{
-			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //pod³oga
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3((i +  10.0f), 8.0f, j), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(10.0f))); //pod³oga
 		}
 	}
 
-	for (float i = 0.0f; i >=-40; i--)
+	for (float i = 0.0f; i >=-50.0f; i--)
 	{
-		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa po lewej stronie kamery
-		meshes.push_back(new Mesh(&Front(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //œciana frontowa po lewej stronie kamery z ty³u widoczna od œrodka 
-		for (float j = 0.0f; j >= -100; j--)
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f))); //œciana frontowa
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.f), glm::vec3(2.0f))); //œciana tylna
+	
+		for (float j = 40.0f; j >= -120; j--)
 		{
-			meshes2.push_back(new Mesh(&Floor(), glm::vec3(i, 0.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(4.0f))); //pod³oga
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3((-10.0f+i), 8.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(10.0f))); //pod³oga
 		}
 	}
 	
+	for (float i = -2.0f; i >= -20.f; i = i - 2.0f)
+	{
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-40.0f, 0.0f, (i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-40.0f, 0.0f, (-30.0f + i)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-40.0f, 0.0f, (-60.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-40.0f, 0.0f, (-90.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-30.0f, 0.0f, (-10.0f + i)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-30.0f, 0.0f, (-50.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-30.0f, 0.0f, (-80.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-20.0f, 0.0f, (-20.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-20.0f, 0.0f, (-50.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-20.0f, 0.0f, (-90.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-10.0f, 0.0f, (-20.0f + i)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-10.0f, 0.0f, (-40.0f + i)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-10.0f, 0.0f, (-60.0f + i)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(0.0f, 0.0f, (-60.0f + i)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(0.0f, 0.0f, (-80.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+	
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(10.0f, 0.0f, (-10.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(10.0f, 0.0f, (-30.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(10.0f, 0.0f, (-50.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(10.0f, 0.0f, (-80.0f + i)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(20.0f, 0.0f, (-20.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(20.0f, 0.0f, (-40.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(20.0f, 0.0f, (-70.0f + i/2.0f)), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(30.0f, 0.0f, i), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(30.0f, 0.0f, (-40.f + i )), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(30.0f, 0.0f, (-60.f + i/2.0f )), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(30.0f, 0.0f, ((-90.f + i/2.0f))), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(40.0f, 0.0f, -10.0f + i), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(40.0f, 0.0f, -50.0f + i), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(40.0f, 0.0f, -80.0f + i/2.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.0f), glm::vec3(2.0f)));
 
-	/*meshes.push_back(new Mesh(&Cubus(), glm::vec3(4.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
-	meshes.push_back(new Mesh(&Cubus(), glm::vec3(6.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
-	meshes.push_back(new Mesh(&Cubus(), glm::vec3(8.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
-	meshes.push_back(new Mesh(&Cubus(), glm::vec3(10.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
-	meshes.push_back(new Mesh(&Cubus(), glm::vec3(-4.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
-	meshes.push_back(new Mesh(&Cubus(), glm::vec3(-6.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
-	meshes.push_back(new Mesh(&Cubus(), glm::vec3(-8.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));
-	meshes.push_back(new Mesh(&Cubus(), glm::vec3(-10.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(2.0f)));*/
-	//meshes.push_back(new Mesh(&Triangle(), glm::vec3(2.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(1.0f)));
-	//meshes2.push_back(new Mesh(&Triangle(), glm::vec3(2.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(-90.0f, 0.0f, 0.0f), glm::vec3(300.0f)));
-	/*meshes2.push_back(new Mesh(&Triangle(), glm::vec3(20.0f, 20.0f, 0.0f), glm::vec3(0.0f), glm::vec3(90.0f, 90.0f, 0.0f), glm::vec3(50.0f)));
-	meshes2.push_back(new Mesh(&Triangle(), glm::vec3(90.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, -90.0f, 0.0f), glm::vec3(60.0f)));
-	meshes2.push_back(new Mesh(&Triangle(), glm::vec3(-90.0f, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f, 90.0f, 0.0f), glm::vec3(60.0f)));*/
+	}
 
+	for (float i = 2.0f; i <= 20; i = i + 2.0f)
+	{
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-50.0f + i, 0.0f, -21.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-50.0f + i/2.0f), 0.0f, -50.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-50.0f + i, 0.0f, -80.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(-41.0f + i, 0.0f, -40.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-41.0f + i/2.0f), 0.0f, -60.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-41.0f + i), 0.0f, -70.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-31.0f + i/2.0f), 0.0f, -10.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-31.0f + i/2.0f), 0.0f, -30.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-31.0f + i/2.0f + (1/20.0f*i)), 0.0f, -50.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-31.0f + i/2.0f), 0.0f, -80.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-21.0f + i/2.0f), 0.0f, -40.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-21.0f + i/2.0f), 0.0f, -70.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-10.0f + i), 0.0f, -10.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-11.0f + i/2.0f), 0.0f, -20.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-11.0f + i/2.0f), 0.0f, -30.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(((-11.0f + i) + (1/20.0f*i)), 0.0f, -50.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-11.0f + i/2.0f), 0.0f, -90.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-1.0f + i/2.0f), 0.0f, -40.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((-1.0f + i), 0.0f, -70.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((10.0f + i/2.0f), 0.0f, -10.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((10.0f + i), 0.0f, -20.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((10.0f + i/2.0f), 0.0f, -40.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((10.0f + i/2.0f), 0.0f, -60.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((20.0f + i/2.0f), 0.0f, -50.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((20.0f + i), 0.0f, -70.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((20.0f + i), 0.0f, -80.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((20.0f + i/2.0f), 0.0f, -90.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((30.0f + i), 0.0f, -30.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((29.0f + i/2.0f), 0.0f, -40.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+		
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((40.0f + i/2.0f), 0.0f, -80.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f)));
+	}
+	
+
+		
 	this->models.push_back(new Model(glm::vec3(0.0f), this->materials[0], this->textures[TEXTURE1], this->textures[TEXTURE1_SPECULAR], meshes));
 	
 	//this->models.push_back(new Model(glm::vec3(0.0f, 1.f, 0.0f), this->materials[0], this->textures[TEXTURE0], this->textures[TEXTURE0_SPECULAR], meshes));
