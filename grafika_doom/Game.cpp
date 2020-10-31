@@ -127,28 +127,28 @@ void Game::initModels()
 	std::vector<Mesh*>meshes;
 	std::vector<Mesh*>meshes2;
 
-	for (float i = 0.0f; i <= 50; i++)
+	for (float i = 0.0f; i <= 35; i++)
 	{
 		
-		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f))); //przednia œciana
-		meshes.push_back(new Mesh(&Cubus(), glm::vec3(1.8*i +10, 0.0f, -50.0f), glm::vec3(0.0f), glm::vec3(0.0f, 90.0f, 0.0f), glm::vec3(2.0f))); //lewa œciana
-		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.f), glm::vec3(2.0f))); //œciana tylna
-		meshes.push_back(new Mesh(&Cubus(), glm::vec3((4.0f+(1.75* i)), 0.0f, 52.0f), glm::vec3(0.0f), glm::vec3(0.0f, 90.0f, 0.0f), glm::vec3(2.0f))); //prawa œciana
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f))); //przednia sciana
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(1.8*i +10, 0.0f, -50.0f), glm::vec3(0.0f), glm::vec3(0.0f, 90.0f, 0.0f), glm::vec3(2.0f))); //lewa sciana
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.f), glm::vec3(2.0f))); //sciana tylna
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3((4.0f+(1.75* i)), 0.0f, 52.0f), glm::vec3(0.0f), glm::vec3(0.0f, 90.0f, 0.0f), glm::vec3(2.0f))); //prawa sciana
 		
-		for (float j = 40.0f; j >= -120; j--)
+		for (float j = 5.0f; j >= -95; j--)
 		{
-			meshes2.push_back(new Mesh(&Floor(), glm::vec3((i +  10.0f), 8.0f, j), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(10.0f))); //pod³oga
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3((i +  10.0f), 8.0f, j), glm::vec3(0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(10.0f))); //podloga
 		}
 	}
 
-	for (float i = 0.0f; i >=-50.0f; i--)
+	for (float i = 0.0f; i >=-35.0f; i--)
 	{
-		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f))); //œciana frontowa
-		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.f), glm::vec3(2.0f))); //œciana tylna
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, 0.0f), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(2.0f))); //sciana frontowa
+		meshes.push_back(new Mesh(&Cubus(), glm::vec3(i, 0.0f, -100.f), glm::vec3(0.0f), glm::vec3(0.0f, 0.f, 0.f), glm::vec3(2.0f))); //sciana tylna
 	
-		for (float j = 40.0f; j >= -120; j--)
+		for (float j = 5.0f; j >= -95; j--)
 		{
-			meshes2.push_back(new Mesh(&Floor(), glm::vec3((-10.0f+i), 8.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(10.0f))); //pod³oga
+			meshes2.push_back(new Mesh(&Floor(), glm::vec3((-10.0f+i), 8.0f, j), glm::vec3(0.0f), glm::vec3(0.0f), glm::vec3(10.0f))); //podloga
 		}
 	}
 	
